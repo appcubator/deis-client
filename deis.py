@@ -74,7 +74,7 @@ import yaml
 __version__ = '0.4.1'
 
 
-locale.setlocale(locale.LC_ALL, '')
+locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 
 
 class Session(requests.Session):
@@ -2162,6 +2162,8 @@ def _dispatch_cmd(method, args):
     except requests.exceptions.ConnectionError as err:
         print("Couldn't connect to the Deis Controller. Make sure that the Controller URI is \
 correct and the server is running.")
+        import pdb
+        pdb.set_trace()
         sys.exit(1)
     except EnvironmentError as err:
         raise DocoptExit(err.message)
