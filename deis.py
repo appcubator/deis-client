@@ -52,7 +52,6 @@ from threading import Event
 from threading import Thread
 import glob
 import json
-import locale
 import os.path
 import random
 import re
@@ -73,8 +72,6 @@ import yaml
 
 __version__ = '0.4.1'
 
-
-locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 
 
 class Session(requests.Session):
