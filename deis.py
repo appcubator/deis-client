@@ -528,13 +528,17 @@ class DeisClient(object):
         # tar up the app
         appdir = args['<codepath>']
 
-        contents = os.listdir(appdir)
-        import tarfile
-        _t = tarfile.open(os.path.join(appdir, '_deis_payload.tar'), 'w')
-        for fname in contents:
-            _t.add(os.path.join(appdir, fname), arcname=fname)
-        _t.close()
-        tar = os.path.join(appdir, '_deis_payload.tar')
+        if appdir.endswith('.tar'):
+            # assume the user provided a tarfile
+            tar = appdir
+        else:
+            contents = os.listdir(appdir)
+            import tarfile
+            _t = tarfile.open(os.path.join(appdir, '_deis_payload.tar'), 'w')
+            for fname in contents:
+                _t.add(os.path.join(appdir, fname), arcname=fname)
+            _t.close()
+            tar = os.path.join(appdir, '_deis_payload.tar')
 
         # send it to timbuktu
 
