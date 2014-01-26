@@ -540,7 +540,7 @@ class DeisClient(object):
             for fname in contents:
                 _t.add(os.path.join(appdir, fname), arcname=fname)
             _t.close()
-            p = subprocess.call(['gzip', '_deis_payload.tar'], cwd=appdir)
+            p = subprocess.check_call(['gzip', '_deis_payload.tar'], cwd=appdir)
             tar = os.path.join(appdir, '_deis_payload.tar.gz')
 
         # send it to timbuktu
