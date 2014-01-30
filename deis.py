@@ -626,9 +626,11 @@ class DeisClient(object):
         response = self._dispatch('get', '/api/apps')
         if response.status_code == requests.codes.ok:  # @UndefinedVariable
             data = response.json()
+            print(data)
             print('=== Apps')
             for item in data['results']:
                 print('{id} {containers}'.format(**item))
+            return [ item['id'] for item in data['results'] ]
         else:
             raise ResponseError(response)
 
