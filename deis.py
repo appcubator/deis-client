@@ -629,6 +629,7 @@ class DeisClient(object):
             print('=== Apps')
             for item in data['results']:
                 print('{id} {containers}'.format(**item))
+            return [item['id'] for item in data['results']]
         else:
             raise ResponseError(response)
 
